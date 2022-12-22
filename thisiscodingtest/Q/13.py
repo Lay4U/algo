@@ -24,11 +24,20 @@ print(chicken)
 candidates = list(combinations(chicken, m))
 print(candidates)
 
-result = 0
-for hx, hy in house:
-    temp = 1e9
-    for candidate in candidates:
+result = 1e9
+
+
+def get_sum(candidate):
+    result = 0
+    for hx, hy in house:
+        temp = 1e9
         for cx, cy in candidate:
-            count = min(temp, abs(hx - cx) + abs(hy - cy))
-    result += count
-print(result)
+            temp = min(temp, abs(hx - cx) + abs(hy - cy))
+        result += temp
+    return result
+
+
+for candidate in candidates:
+    print(candidate)
+    result = min(result, get_sum(candidate))
+    print(get_sum(candidate), result)
