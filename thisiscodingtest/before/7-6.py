@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
 
 n = int(input())
 array = [0] * 1000001
@@ -16,4 +16,3 @@ for i in x:
         print('yes', end=' ')
     else:
         print('no', end=' ')
-

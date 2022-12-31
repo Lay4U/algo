@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open("input.txt", "rt")
+sys.stdin = open("../input.txt", "rt")
 n = int(input())
 
 array = []

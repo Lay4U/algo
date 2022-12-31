@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
 INF = int(1e9)
 
 n, m = map(int, input().split())

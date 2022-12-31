@@ -1,6 +1,7 @@
 import sys
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
+
 
 def binary_search(array, target, start, end):
     while start <= end:
@@ -16,6 +17,7 @@ def binary_search(array, target, start, end):
             start = mid + 1
 
         return None
+
 
 n = int(input())
 array = list(map(int, input().split()))

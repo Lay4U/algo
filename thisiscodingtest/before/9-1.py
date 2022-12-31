@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
 
 INF = int(1e9)
 
@@ -14,6 +14,7 @@ for _ in range(m):
     a, b, c = map(int, input().split())
     graph[a].append((b, c))
 
+
 def get_smallest_node():
     min_value = INF
     index = 0
@@ -22,6 +23,7 @@ def get_smallest_node():
             min_value = distance[i]
             index = i
     return index
+
 
 def dijkstra(start):
     distance[start] = 0
@@ -45,5 +47,3 @@ for i in range(1, n + 1):
         print("INFINITY")
     else:
         print(distance[i])
-
-

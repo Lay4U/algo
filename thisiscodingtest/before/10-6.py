@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
 
 v, e = map(int, input().split())
 indegree = [0] * (v + 1)

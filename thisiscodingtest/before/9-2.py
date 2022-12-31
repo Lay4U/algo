@@ -1,16 +1,18 @@
 import heapq
 import sys
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
 INF = int(1e9)
 
-n, m, start = map(int, input().split())
+n, m = map(int, input().split())
+
+start = int(input())
 graph = [[] for i in range(n + 1)]
 distance = [INF] * (n + 1)
 
 for _ in range(m):
-    x, y, z = map(int, input().split())
-    graph[x].append((y, z))
+    a, b, c = map(int, input().split())
+    graph[a].append((b, c))
 
 
 def dijkstra(start):
@@ -30,11 +32,8 @@ def dijkstra(start):
 
 dijkstra(start)
 
-count = 0
-max_distance = 0
-for d in distance:
-    if d != INF:
-        count += 1
-        max_distance = max(max_distance, d)
-
-print(count - 1, max_distance)
+for i in range(1, n + 1):
+    if distance[i] == INF:
+        print("INFINITY")
+    else:
+        print(distance[i])

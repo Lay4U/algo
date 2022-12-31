@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
 
 
 def find_parent(parent, x):
@@ -34,4 +34,3 @@ for i in range(m):
             print('YES')
         else:
             print('NO')
-            

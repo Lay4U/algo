@@ -1,6 +1,7 @@
-from collections import deque
 import sys
-sys.stdin = open("input.txt", "r")
+from collections import deque
+
+sys.stdin = open("../input.txt", "r")
 
 n, m = map(int, input().split())
 
@@ -10,6 +11,8 @@ for i in range(n):
 
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
+
+
 # print()
 def bfs(x, y):
     queue = deque()
@@ -21,7 +24,7 @@ def bfs(x, y):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if nx< 0 or ny < 0 or nx >= n or ny >= m:
+            if nx < 0 or ny < 0 or nx >= n or ny >= m:
                 continue
 
             if graph[nx][ny] == 0:
@@ -31,6 +34,7 @@ def bfs(x, y):
                 graph[nx][ny] = graph[x][y] + 1
                 queue.append((nx, ny))
 
-    return graph[n-1][m-1]
+    return graph[n - 1][m - 1]
+
 
 print(bfs(0, 0))

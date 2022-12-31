@@ -1,6 +1,6 @@
 import sys
 
-sys.stdin = open("input.txt", "rt", encoding="utf-8")
+sys.stdin = open("../input.txt", "rt", encoding="utf-8")
 
 
 def find_parent(parent, x):
@@ -33,13 +33,13 @@ for _ in range(e):
     edges.append((cost, a, b))
 
 edges.sort()
+last = 0
 
 for edge in edges:
     cost, a, b = edge
-    parent1 = find_parent(parent, a)
-    parent2 = find_parent(parent, b)
-    if parent1 != parent2:
+    if find_parent(parent, a) != find_parent(parent, b):
         union_parent(parent, a, b)
         result += cost
+        last = cost
 
-print(result)
+print(result - last)
