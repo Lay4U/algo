@@ -26,6 +26,7 @@ def get_next_pos(pos, board):
             if board[pos1_x][pos1_y + i] == 0 and board[pos2_x][pos2_y + i] == 0:
                 next_pos.append([(pos1_x, pos1_y), (pos1_x, pos1_y + i)])
                 next_pos.append([(pos2_x, pos2_y), (pos2_x, pos2_y + i)])
+    print(next_pos)
     return next_pos
 
 
@@ -41,7 +42,6 @@ def solution(board):
     q.append((pos, 0))
     visited.append(pos)
     while q:
-        print(q)
         pos, cost = q.popleft()
         if (n, n) in pos:
             return cost
