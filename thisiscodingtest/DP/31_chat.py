@@ -1,5 +1,6 @@
 def max_path_sum(tc, testcases):
     for n, m, array in testcases:
+
         dp = [[array[i * m + j] for j in range(m)] for i in range(n)]
 
         for j in range(1, m):
