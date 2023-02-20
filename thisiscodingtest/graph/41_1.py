@@ -37,3 +37,6 @@ if result:
     print("YES")
 else:
     print("NO")
+
+print(plan)
+print(parent)
