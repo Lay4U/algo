@@ -3,6 +3,7 @@ def z_order(n, r, c):
         return 0
 
     half = 2 ** (n - 1)
+
     if r < half:
         if c < half:
             return z_order(n - 1, r, c)
