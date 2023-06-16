@@ -1,13 +1,16 @@
-k, n = map(int, input().split())
-datas = [int(input()) for _ in range(k)]
+n, k = map(int, input().split())
+datas = []
+for i in range(n):
+    datas.append(int(input()))
 
-start = 1
-end = max(datas)
+start, end = 1, max(datas)
 
 while start <= end:
     mid = (start + end) // 2
+
     total = sum([data // mid for data in datas])
-    if total >= n:
+
+    if total >= k:
         start = mid + 1
     else:
         end = mid - 1
