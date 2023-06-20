@@ -1,27 +1,29 @@
 import sys
 from collections import Counter
 
-n, m, b = map(int, sys.stdin.readline().split())
-land = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+input = sys.stdin.readline
 
-flat_land = [height for row in land for height in row]
+n, m, b = map(int, input().split())
+land = [map(int, input().split()) for _ in range(n)]
+
+flat_land = [flat for row in land for flat in row]
 counter = Counter(flat_land)
-
-min_time = float('inf')
+min_time = 1e9
 max_height = 0
 
 for h in range(257):
     time = 0
     inventory = b
-    for height, freq in counter.items():
-        if height < h:
-            time += (h - height) * freq
-            inventory -= (h - height) * freq
+    for height, depth in counter.items():
+        if h > height:
+            time += (h - height) * depth
+            inventory -= (h - height) * depth
         else:
-            time += (height - h) * 2 * freq
-            inventory += (height - h) * freq
+            time += (height - h) * 2 * depth
+            inventory += (height - h) * depth
+
     if inventory >= 0:
-        if time <= min_time:
+        if min_time >= time:
             min_time = time
             max_height = h
 
