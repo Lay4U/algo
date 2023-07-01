@@ -1,26 +1,11 @@
 import sys
-from collections import deque
+input = sys.stdin.readline
+n = int(input())
 
-num = int(sys.stdin.readline())
-except_num = round(num * 0.15 + 0.00000001)
-result = 0
-data = deque()
-
-if num == 0:
+if n:
+    arr = [int(input()) for _ in range(n)]
+    arr.sort()
+    k = round(n * 0.15 + 0.00000001)
+    print(round(sum(arr[k:-k] if k else arr) / (n - 2 * k) + 0.00000001))
+else:
     print(0)
-    exit()
-
-for _ in range(num):
-    data.append(int(sys.stdin.readline()))
-
-data = deque(sorted(data))
-
-for _ in range(except_num):
-    data.popleft()
-    data.pop()
-
-for i in data:
-    result += i
-
-result = round(result / len(data) + 0.0000001)
-print(result)
