@@ -1,15 +1,18 @@
 import sys
 
 input = sys.stdin.readline
+
+
+def my_round(value):
+    return int(value) + 1 if value - int(value) >= 0.5 else int(value)
+
+
 n = int(input())
-
-def custom_round(n):
-    return int(n) + 1 if n - int(n) >= 0.5 else int(n)
-
-if n:
-    arr = [int(input()) for _ in range(n)]
-    arr.sort()
-    k = custom_round(n * 0.15)
-    print(custom_round(sum(arr[k:-k] if k else arr) / (n - 2 * k)))
-else:
+if n == 0:
     print(0)
+else:
+    datas = [int(input()) for _ in range(n)]
+    datas.sort()
+    k = my_round(len(datas) * 0.15)
+    datas = datas[k:-k] if k else datas
+    print(my_round(sum(datas) / len(datas)))
