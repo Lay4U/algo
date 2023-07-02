@@ -3,10 +3,11 @@ import sys
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-not_heard = {input().strip() for _ in range(n)}
-not_seen = {input().strip() for _ in range(n)}
-both = sorted(list(not_heard & not_seen))
 
-print(len(both))
-for name in both:
+n = {input().strip() for _ in range(n)}
+m = {input().strip() for _ in range(m)}
+
+result = sorted(n & m)
+print(len(result))
+for name in result:
     print(name)
