@@ -1,14 +1,12 @@
 import heapq
 import sys
-
 input = sys.stdin.readline
-
 n = int(input())
 
-heap = []
+datas = []
 for _ in range(n):
-    data = int(input())
-    if data:
-        heapq.heappush(heap, data)
+    value = int(input())
+    if value == 0:
+        print(heapq.heappop(datas) if datas else 0)
     else:
-        print(heapq.heappop(heap) if heap else 0)
+        heapq.heappush(datas, value)
