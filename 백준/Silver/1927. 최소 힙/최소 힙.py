@@ -1,8 +1,8 @@
-import heapq
 import sys
+import heapq
 input = sys.stdin.readline
-n = int(input())
 
+n = int(input())
 datas = []
 for _ in range(n):
     value = int(input())
