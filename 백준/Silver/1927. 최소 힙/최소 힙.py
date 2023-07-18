@@ -1,11 +1,12 @@
-import heapq
 import sys
-
+import heapq
 input = sys.stdin.readline
-queue = []
-for _ in range(int(input())):
+
+n = int(input())
+list = []
+for _ in range(n):
     value = int(input())
     if value == 0:
-        print(heapq.heappop(queue) if queue else '0')
+        print(heapq.heappop(list) if list else 0)
     else:
-        heapq.heappush(queue, value)
+        heapq.heappush(list, value)
