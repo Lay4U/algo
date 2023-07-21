@@ -1,34 +1,35 @@
-from collections import deque
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 
-T = int(input())
-
-for _ in range(T):
-    p = input().rstrip()
+for _ in range(int(input())):
+    p = input().strip()
     n = int(input())
-    x = input().rstrip()[1:-1].split(',')
+    datas = input().strip()[1:-1].split(',')
     if n == 0:
-        x = []
+        datas = []
     else:
-        x = deque(x)
+        datas = deque(datas)
+
     error = False
     reverse = False
+
     for op in p:
         if op == 'R':
             reverse = not reverse
         elif op == 'D':
-            if not x:
+            if not datas:
                 error = True
                 break
             if reverse:
-                x.pop()
+                datas.pop()
             else:
-                x.popleft()
+                datas.popleft()
+
     if error:
         print('error')
     else:
         if reverse:
-            x.reverse()
-        print(f"[{','.join(x)}]")
+            datas.reverse()
+        print(f"[{','.join(datas)}]")
