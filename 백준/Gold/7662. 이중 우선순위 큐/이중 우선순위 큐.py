@@ -1,37 +1,28 @@
-import sys
 import heapq
-
+import sys
 input = sys.stdin.readline
-
-T = int(input())
-for _ in range(T):
-    k = int(input())
-    minQ = []
-    maxQ = []
+for _ in range(int(input())):
+    maxq = []
+    minq = []
     visited = [False] * 1000001
-    for i in range(k):
-        op, n = map(str, input().split())
-        if op == "I":
-            heapq.heappush(minQ, (int(n), i))
-            heapq.heappush(maxQ, (-int(n), i))
+    for i in range(int(input())):
+        op, n = input().split()
+        n = int(n)
+        if op == 'I':
+            heapq.heappush(minq, (n, i))
+            heapq.heappush(maxq, (-n, i))
             visited[i] = True
         else:
-            if n == "-1":
-                # maxQ 에서 이미 삭제된 값은 버리기
-                while minQ and not visited[minQ[0][1]]:
-                    heapq.heappop(minQ)
-                if minQ:
-                    visited[minQ[0][1]] = False
-                    heapq.heappop(minQ)
-            elif n == "1":
-                # minQ 에서 이미 삭제된 값은 버리기
-                while maxQ and not visited[maxQ[0][1]]:
-                    heapq.heappop(maxQ)
-                if maxQ:
-                    visited[maxQ[0][1]] = False
-                    heapq.heappop(maxQ)
-    while minQ and not visited[minQ[0][1]]:
-        heapq.heappop(minQ)
-    while maxQ and not visited[maxQ[0][1]]:
-        heapq.heappop(maxQ)
-    print(f'{-maxQ[0][0]} {minQ[0][0]}' if maxQ and minQ else 'EMPTY')
+            targetQ = minq if n == -1 else maxq
+            while targetQ and not visited[targetQ[0][1]]:
+                heapq.heappop(targetQ)
+            if targetQ:
+                visited[targetQ[0][1]] = False
+                heapq.heappop(targetQ)
+
+    while minq and not visited[minq[0][1]]:
+        heapq.heappop(minq)
+    while maxq and not visited[maxq[0][1]]:
+        heapq.heappop(maxq)
+
+    print(f'{-maxq[0][0]} {minq[0][0]}' if minq and maxq else 'EMPTY')
