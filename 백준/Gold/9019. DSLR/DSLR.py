@@ -1,38 +1,28 @@
-import sys
 from collections import deque
-T = int(input())
 
-for _ in range(T):
-    A, B = map(int,sys.stdin.readline().rstrip().split())
-
-    visited = [False for i in range(10001)]
-    deq = deque()
-    deq.append([A,''])
-    visited[A] = True
-
-    while deq:
-        num, command = deq.popleft()
-
-        if num == B:
-            print(command)
+for _ in range(int(input())):
+    start, end = map(int, input().split())
+    queue = deque([(start, '')])
+    visited = [False] * 10001
+    while queue:
+        v, result = queue.popleft()
+        if v == end:
+            print(result)
             break
+        d = (v * 2) % 10000
+        s = v - 1 if v != 0 else 9999
+        l = (v % 1000) * 10 + (v // 1000)
+        r = (v % 10) * 1000 + (v // 10)
 
-        d = num * 2 % 10000
         if not visited[d]:
             visited[d] = True
-            deq.append([d, command + 'D'])
-
-        s = (num - 1) % 10000
+            queue.append((d, result + 'D'))
         if not visited[s]:
             visited[s] = True
-            deq.append([s, command + 'S'])
-
-        l = num // 1000 + (num % 1000)*10
+            queue.append((s, result + 'S'))
         if not visited[l]:
             visited[l] = True
-            deq.append([l, command + 'L'])
-
-        r = num // 10 + (num % 10) * 1000
+            queue.append((l, result + 'L'))
         if not visited[r]:
             visited[r] = True
-            deq.append([r, command + 'R'])
+            queue.append((r, result + 'R'))
