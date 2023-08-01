@@ -5,24 +5,28 @@ for _ in range(int(input())):
     queue = deque([(start, '')])
     visited = [False] * 10001
     while queue:
-        v, result = queue.popleft()
-        if v == end:
-            print(result)
+        value, op = queue.popleft()
+        if value == end:
+            print(op)
             break
-        d = (v * 2) % 10000
-        s = v - 1 if v != 0 else 9999
-        l = (v % 1000) * 10 + (v // 1000)
-        r = (v % 10) * 1000 + (v // 10)
+
+        d = (value * 2) % 10000
+        s = (value - 1) if value != 0 else 9999
+        l = (value % 1000) * 10 + (value // 1000)
+        r = (value % 10) * 1000 + (value // 10)
 
         if not visited[d]:
+            queue.append((d, op + 'D'))
             visited[d] = True
-            queue.append((d, result + 'D'))
+
         if not visited[s]:
+            queue.append((s, op + 'S',))
             visited[s] = True
-            queue.append((s, result + 'S'))
+
         if not visited[l]:
+            queue.append((l, op + 'L',))
             visited[l] = True
-            queue.append((l, result + 'L'))
+
         if not visited[r]:
+            queue.append((r, op + 'R',))
             visited[r] = True
-            queue.append((r, result + 'R'))
