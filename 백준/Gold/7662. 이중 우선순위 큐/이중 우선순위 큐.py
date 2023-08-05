@@ -2,27 +2,29 @@ import heapq
 import sys
 input = sys.stdin.readline
 for _ in range(int(input())):
-    maxq = []
-    minq = []
+    maxQueue = []
+    minQueue = []
     visited = [False] * 1000001
     for i in range(int(input())):
-        op, n = input().split()
-        n = int(n)
+        op, value = input().split()
+        value = int(value)
+
         if op == 'I':
-            heapq.heappush(minq, (n, i))
-            heapq.heappush(maxq, (-n, i))
+            heapq.heappush(minQueue, (value, i))
+            heapq.heappush(maxQueue, (-value, i))
             visited[i] = True
         else:
-            targetQ = minq if n == -1 else maxq
-            while targetQ and not visited[targetQ[0][1]]:
-                heapq.heappop(targetQ)
-            if targetQ:
-                visited[targetQ[0][1]] = False
-                heapq.heappop(targetQ)
+            targetQueue = minQueue if value == -1 else maxQueue
+            while targetQueue and not visited[targetQueue[0][1]]:
+                heapq.heappop(targetQueue)
 
-    while minq and not visited[minq[0][1]]:
-        heapq.heappop(minq)
-    while maxq and not visited[maxq[0][1]]:
-        heapq.heappop(maxq)
+            if targetQueue:
+                visited[targetQueue[0][1]] = False
+                heapq.heappop(targetQueue)
 
-    print(f'{-maxq[0][0]} {minq[0][0]}' if minq and maxq else 'EMPTY')
+    while minQueue and not visited[minQueue[0][1]]:
+        heapq.heappop(minQueue)
+    while maxQueue and not visited[maxQueue[0][1]]:
+        heapq.heappop(maxQueue)
+
+    print(f'{-maxQueue[0][0]} {minQueue[0][0]}' if maxQueue and minQueue else 'EMPTY')
