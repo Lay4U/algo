@@ -1,11 +1,14 @@
 from collections import defaultdict
 
 for _ in range(int(input())):
-    cloth = defaultdict(int)
-    for _ in range(int(input())):
-        item, category = input().split()
-        cloth[category] += 1
+    n = int(input())
+    datas = defaultdict(int)
+    for _ in range(n):
+        name, category = input().strip().split()
+        datas[category] += 1
+
     result = 1
-    for key in cloth.keys():
-        result *= (cloth[key] + 1)
+    for category, count in datas.items():
+        result *= count + 1
+
     print(result - 1)
