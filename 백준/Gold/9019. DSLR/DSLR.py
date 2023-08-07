@@ -1,32 +1,37 @@
+import sys
 from collections import deque
 
+input = sys.stdin.readline
+
 for _ in range(int(input())):
-    start, end = map(int, input().split())
-    queue = deque([(start, '')])
+
+    a, b = map(int, input().split())
+
+    queue = deque([(a, '')])
     visited = [False] * 10001
     while queue:
         value, op = queue.popleft()
-        if value == end:
+        if value == b:
             print(op)
             break
 
         d = (value * 2) % 10000
-        s = (value - 1) if value != 0 else 9999
+        s = value - 1 if value != 0 else 9999
         l = (value % 1000) * 10 + (value // 1000)
         r = (value % 10) * 1000 + (value // 10)
 
         if not visited[d]:
-            queue.append((d, op + 'D'))
             visited[d] = True
+            queue.append((d, op + 'D'))
 
         if not visited[s]:
-            queue.append((s, op + 'S',))
             visited[s] = True
+            queue.append((s, op + 'S',))
 
         if not visited[l]:
-            queue.append((l, op + 'L',))
             visited[l] = True
+            queue.append((l, op + 'L'))
 
         if not visited[r]:
-            queue.append((r, op + 'R',))
             visited[r] = True
+            queue.append((r, op + 'R'))
