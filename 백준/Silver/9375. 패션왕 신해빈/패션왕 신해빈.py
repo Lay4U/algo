@@ -1,14 +1,13 @@
 from collections import defaultdict
+import sys
+input = sys.stdin.readline
 
 for _ in range(int(input())):
-    n = int(input())
-    datas = defaultdict(int)
-    for _ in range(n):
-        name, category = input().strip().split()
-        datas[category] += 1
-
-    result = 1
-    for category, count in datas.items():
-        result *= count + 1
-
-    print(result - 1)
+    clothes = defaultdict(int)
+    for _ in range(int(input())):
+        name, category = input().split()
+        clothes[category] += 1
+    count = 1
+    for category, value in clothes.items():
+        count = count * (value + 1)
+    print(count - 1)
