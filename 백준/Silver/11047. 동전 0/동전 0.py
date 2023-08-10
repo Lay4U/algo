@@ -1,9 +1,12 @@
 n, k = map(int, input().split())
+
 coins = [int(input()) for _ in range(n)]
-
-cnt = 0
-for coin in coins[::-1]:
-    cnt += k // coin
+coins.sort(reverse=True)
+count = 0
+for coin in coins:
+    count += k // coin
     k %= coin
+    if k == 0:
+        break
 
-print(cnt)
+print(count)
